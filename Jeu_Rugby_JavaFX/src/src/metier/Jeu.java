@@ -1,0 +1,56 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package src.metier;
+
+import java.util.ArrayList;
+import java.util.List;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.ObservableList;
+import src.persistance.Persistance;
+import src.persistance.Persistance_Brut;
+
+/**
+ *
+ * @author anbrousse1
+ */
+public class Jeu {
+    List<Utilisateur> users = new ArrayList<>(); 
+    private Utilisateur current_user;
+    private Persistance_Brut stub;
+    
+    private final ListProperty<Equipe> equipes = new SimpleListProperty<>();
+    public ObservableList getEquipes() {return equipes.get();}
+    private void setEquipes(ObservableList value) {equipes.set(value);}
+    public ListProperty equipesProperty() {return equipes;}
+    
+    
+    
+    
+    public Jeu(Persistance_Brut stub) {
+        this.stub = stub;
+        users = stub.getAllUsers();       
+    }    
+   
+    
+    public boolean connexion(String login, String mdp){
+        for(Utilisateur u : users){
+            if(u.getLogin().equals(login) && u.getMot_de_passe().equals(mdp)){
+                current_user = u;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Utilisateur getCurrent_user() {
+        return current_user;
+    }
+    
+    
+    
+    
+}
