@@ -5,6 +5,10 @@
  */
 package src.metier;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -14,93 +18,68 @@ import javafx.beans.property.StringProperty;
  * @author anbrousse1
  */
 public class Joueur {
-    private String nom;
-    private String prenom;
-    private int age;
-    private int niveau;
-    private int force_entrainement;
-    private Poste poste;
-    
-    private final StringProperty info = new SimpleStringProperty();
-    public String getInfo() {return info.get(); }
-    private void setInfo(String value) {info.set(value);}
-    public StringProperty infoProperty() {return info;}
 
-   
+    private final StringProperty nom = new SimpleStringProperty();
+        public String getNom() {return nom.get();}
+        private void setNom(String value) {nom.set(value);}
+        public StringProperty nomProperty() {return nom;}
+        
+    private final StringProperty prenom = new SimpleStringProperty();
+        public String getPrenom() {return prenom.get();}
+        private void setPrenom(String value) {prenom.set(value);}
+        public StringProperty prenomProperty() {return prenom;}
+    
+    private final IntegerProperty age = new SimpleIntegerProperty();
+        public int getAge() {return age.get();}
+        public void setAge(int value) {age.set(value);}
+        public IntegerProperty ageProperty() {return age;}
+    
+    private final IntegerProperty niveau = new SimpleIntegerProperty();
+        public int getNiveau() {return niveau.get();}
+        public void setNiveau(int value) {niveau.set(value);}
+        public IntegerProperty niveauProperty() {return niveau;}
+        
+    private final IntegerProperty force_entrainement = new SimpleIntegerProperty();
+        public int getForce_entrainement() {return force_entrainement.get();}
+        public void setForce_entrainement(int value) {force_entrainement.set(value);}
+        public IntegerProperty force_entrainementProperty() {return force_entrainement;}
+        
+    private final ObjectProperty<Poste> poste = new SimpleObjectProperty<>();
+        public Poste getPoste() {return poste.get();}
+        public void setPoste(Poste value) {poste.set(value);}
+        public ObjectProperty posteProperty() {return poste;}
+        
+        
+    
 
     public Joueur(String nom, String prenom, int age, int niveau, int force_entrainement,Poste poste) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.age = age;
-        this.niveau = niveau;
-        this.force_entrainement = force_entrainement;
-        this.poste = poste;
+        setNom(nom);
+        setPrenom(prenom);
+        setAge(age);
+        setNiveau(niveau);
+        setForce_entrainement(force_entrainement);
+        setPoste(poste);
         
-        setInfo(String.format("nom : %s prénom : %s âge : %d niveau : %d poste : %s\n",getNom(),getPrenom(),getAge(),getNiveau(),getPoste()));
     }
     
     
     
     
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getNiveau() {
-        return niveau;
-    }
-
-    public void setNiveau(int niveau) {
-        this.niveau = niveau;
-    }
-
-    public int getForce_entrainement() {
-        return force_entrainement;
-    }
-
-    public Poste getPoste() {
-        return poste;
-    }
-    
-
-    public void setForce_entrainement(int force_entrainement) {
-        this.force_entrainement = force_entrainement;
-    }
-    
+   
     
     public void entrainer(Entrainement e){
-        force_entrainement += e.getForce();
+        setForce_entrainement(getForce_entrainement() + e.getForce());
         
-        if(force_entrainement >= 100){
-            niveau += 1;
-            force_entrainement = force_entrainement - 100;
+        if(getForce_entrainement() >= 100){
+            setNiveau(getNiveau() + 1);
+            setForce_entrainement(getForce_entrainement() - 100);
         }
                 
     }
 
     @Override
     public String toString() {
-        return String.format("nom : %s prénom : %s âge : %d niveau : %d poste : %s\n",getNom(),getPrenom(),getAge(),getNiveau(),getPoste());
+        return String.format("%s %s",getNom(),getPrenom());
     }  
     
     

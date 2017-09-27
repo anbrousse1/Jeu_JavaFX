@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -22,6 +23,46 @@
          <children>
             <Label fx:id="nomEquipe" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
             <ListView fx:id="listjoueur" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+            <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
+               <top>
+                  <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="prenom">
+                           <HBox.margin>
+                              <Insets right="8.0" />
+                           </HBox.margin></Label>
+                        <Label fx:id="nom" />
+                     </children>
+                  </HBox>
+               </top>
+               <center>
+                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox> 
+                           <children>
+                              <Label fx:id="label_age" text="Age : " />
+                              <Label fx:id="age" />
+                           </children>
+                        </HBox>
+                        <HBox> 
+                           <children>
+                              <Label fx:id="label_niveau" text="Niveau : " />
+                              <Label fx:id="niveau" />
+                           </children>
+                        </HBox>
+                        <HBox> 
+                           <children>
+                              <Label fx:id="label_poste" text="Poste : " />
+                              <Label fx:id="poste" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </center>
+               <bottom>
+                  <Button fx:id="btn_entrainer" onAction="#entrainer" alignment="CENTER"  text="Entrainer" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
 
          </children>
       </GridPane>

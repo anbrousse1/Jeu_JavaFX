@@ -41,10 +41,11 @@ public class Equipe {
     private int niveau;
     private int nb_joueur;
     
-    private final ListProperty<Joueur> joueurs = new SimpleListProperty<>();
-    public ObservableList getJoueurs() {return joueurs.get();}
-    private void setJoueurs(ObservableList value) {joueurs.set(value);}
-    public ListProperty joueursProperty() {return joueurs;}    
+    private ObservableList<Joueur> joueursObs = FXCollections.observableArrayList();
+    private final ListProperty<Joueur> joueurs = new SimpleListProperty<>(joueursObs);
+        public ObservableList<Joueur> getJoueurs() {return joueurs.get();}
+        private void setJoueurs(ObservableList<Joueur> value) {joueurs.set(value);}
+        public ListProperty<Joueur> joueursProperty() {return joueurs;}    
 
    
     
@@ -115,7 +116,7 @@ public class Equipe {
     
     public void editer_equipe_random(){
         int i = 1;
-        for(Joueur j : joueurs){
+        for(Joueur j : joueursObs){
             if(i > 7){
                 return;
             }

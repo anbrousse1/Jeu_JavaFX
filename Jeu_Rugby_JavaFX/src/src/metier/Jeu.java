@@ -8,7 +8,9 @@ package src.metier;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import src.persistance.Persistance;
 import src.persistance.Persistance_Brut;
@@ -19,15 +21,17 @@ import src.persistance.Persistance_Brut;
  */
 public class Jeu {
     List<Utilisateur> users = new ArrayList<>(); 
-    private Utilisateur current_user;
+    
+    
     private Persistance_Brut stub;
     
-    private final ListProperty<Equipe> equipes = new SimpleListProperty<>();
-    public ObservableList getEquipes() {return equipes.get();}
-    private void setEquipes(ObservableList value) {equipes.set(value);}
-    public ListProperty equipesProperty() {return equipes;}
     
-    
+    private final ObjectProperty<Utilisateur> current_user = new SimpleObjectProperty<>();
+        public Utilisateur getCurrent_user() {return current_user.get();}
+        public void setCurrent_user(Utilisateur value) {current_user.set(value);}
+        public ObjectProperty<Utilisateur> current_userProperty() {return current_user;}
+
+       
     
     
     public Jeu(Persistance_Brut stub) {
@@ -39,16 +43,14 @@ public class Jeu {
     public boolean connexion(String login, String mdp){
         for(Utilisateur u : users){
             if(u.getLogin().equals(login) && u.getMot_de_passe().equals(mdp)){
-                current_user = u;
+                setCurrent_user(u);
                 return true;
             }
         }
         return false;
     }
 
-    public Utilisateur getCurrent_user() {
-        return current_user;
-    }
+   
     
     
     

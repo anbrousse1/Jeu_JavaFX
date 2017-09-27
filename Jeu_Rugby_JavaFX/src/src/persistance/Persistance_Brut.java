@@ -5,6 +5,7 @@
  */
 package src.persistance;
 
+import com.sun.javafx.collections.ElementObservableListDecorator;
 import src.metier.Equipe;
 import src.metier.Joueur;
 import src.metier.Poste;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -21,15 +23,17 @@ import javafx.collections.ObservableList;
  */
 public class Persistance_Brut implements Persistance {
    
-    private final ListProperty<Equipe> equipes = new SimpleListProperty<>();
-    public ObservableList getEquipes() {return equipes.get();}
-    private void setEquipes(ObservableList value) {equipes.set(value);}
-    public ListProperty equipesProperty() {return equipes;}  
-    
-    private final ListProperty<Joueur> joueurs = new SimpleListProperty<>();
-    public ObservableList getJoueurs() {return joueurs.get();}
-    private void setJoueurs(ObservableList value) {joueurs.set(value);}
-    public ListProperty JoueursProperty() {return joueurs;}  
+    private ObservableList<Equipe> equipesobs = FXCollections.observableArrayList();
+    private final ListProperty<Equipe> equipes = new SimpleListProperty<Equipe>(equipesobs);
+        public ObservableList<Equipe> getEquipes() {return equipes.get();}
+        private void setEquipes(ObservableList<Equipe> value) {equipes.set(value);}
+        public ListProperty<Equipe> equipesProperty() {return equipes;}
+        
+    private ObservableList<Joueur> joueursObs = FXCollections.observableArrayList();
+    private final ListProperty<Joueur> joueurs = new SimpleListProperty<>(joueursObs);
+        public ObservableList<Joueur> getJoueurs() {return joueurs.get();}
+        private void setJoueurs(ObservableList<Joueur> value) {joueurs.set(value);}
+        public ListProperty<Joueur> JoueursProperty() {return joueurs;}  
     
     public List<Utilisateur> user = new ArrayList<>();
 
@@ -40,7 +44,7 @@ public class Persistance_Brut implements Persistance {
   
     public ObservableList<Equipe> getAllEquipe(){ 
         
-        asm.ajouterJoueur(new Joueur("Jarvis", "Aaron", 30, 80, 75, Poste.PILIER));
+        asm.ajouterJoueur(new Joueur("Jarvis", "Aaron", 30, 80, 99, Poste.PILIER));
         asm.ajouterJoueur(new Joueur("Kayser", "Benjamin", 29, 83, 57, Poste.TALONNEUR));
         asm.ajouterJoueur(new Joueur("Chaume", "Raphaël", 25, 85, 52, Poste.PILIER));
         asm.ajouterJoueur(new Joueur("Parra", "Morgan", 29, 85, 75, Poste.DEMI_MELEE));
@@ -58,34 +62,34 @@ public class Persistance_Brut implements Persistance {
         rct.ajouterJoueur(new Joueur("Tuisova", "joah", 25, 81, 75, Poste.AILIER));
         rct.editer_equipe_random();
         
-        getEquipes().add(asm);
-        getEquipes().add(rct);
+        equipesobs.add(asm);
+        equipesobs.add(rct);
         
-        return getEquipes();        
+        return equipesobs;        
     }
     
     public ObservableList<Joueur> getJoueur(String equipe){
         switch(equipe){
             case "ASM" : 
-                joueurs.add(new Joueur("Jarvis", "Aaron", 30, 80, 75, Poste.PILIER));
-                joueurs.add(new Joueur("Kayser", "Benjamin", 29, 83, 57, Poste.TALONNEUR));
-                joueurs.add(new Joueur("Chaume", "Raphaël", 25, 85, 52, Poste.PILIER));
-                joueurs.add(new Joueur("Parra", "Morgan", 29, 85, 75, Poste.DEMI_MELEE));
-                joueurs.add(new Joueur("Lopez", "Camille", 26, 86, 87, Poste.DEMI_OUVERTURE));       
-                joueurs.add(new Joueur("Fofana", "Wesley", 29, 87, 85, Poste.CENTRE));
-                joueurs.add(new Joueur("Rougerie", "Aurélien", 35, 82, 74, Poste.AILIER));
+                joueursObs.add(new Joueur("Jarvis", "Aaron", 30, 80, 99, Poste.PILIER));
+                joueursObs.add(new Joueur("Kayser", "Benjamin", 29, 83, 57, Poste.TALONNEUR));
+                joueursObs.add(new Joueur("Chaume", "Raphaël", 25, 85, 52, Poste.PILIER));
+                joueursObs.add(new Joueur("Parra", "Morgan", 29, 85, 75, Poste.DEMI_MELEE));
+                joueursObs.add(new Joueur("Lopez", "Camille", 26, 86, 87, Poste.DEMI_OUVERTURE));       
+                joueursObs.add(new Joueur("Fofana", "Wesley", 29, 87, 85, Poste.CENTRE));
+                joueursObs.add(new Joueur("Rougerie", "Aurélien", 35, 82, 74, Poste.AILIER));
                 break;
             case "RCT" : 
-                joueurs.add(new Joueur("Fresia", "Florian", 25, 81, 75, Poste.PILIER));
-                joueurs.add(new Joueur("Guirado", "Guilhem", 29, 85, 65, Poste.TALONNEUR));
-                joueurs.add(new Joueur("Chocci", "Xavier", 28, 79, 52, Poste.PILIER));
-                joueurs.add(new Joueur("Escande", "Eric", 25, 78, 75, Poste.DEMI_MELEE));
-                joueurs.add(new Joueur("Belleau", "Anthony", 25, 82, 75, Poste.DEMI_OUVERTURE));
-                joueurs.add(new Joueur("Bastaraud", "Mathieu", 25, 85, 75, Poste.CENTRE));
-                joueurs.add(new Joueur("Tuisova", "joah", 25, 81, 75, Poste.AILIER));
+                joueursObs.add(new Joueur("Fresia", "Florian", 25, 81, 75, Poste.PILIER));
+                joueursObs.add(new Joueur("Guirado", "Guilhem", 29, 85, 65, Poste.TALONNEUR));
+                joueursObs.add(new Joueur("Chocci", "Xavier", 28, 79, 52, Poste.PILIER));
+                joueursObs.add(new Joueur("Escande", "Eric", 25, 78, 75, Poste.DEMI_MELEE));
+                joueursObs.add(new Joueur("Belleau", "Anthony", 25, 82, 75, Poste.DEMI_OUVERTURE));
+                joueursObs.add(new Joueur("Bastaraud", "Mathieu", 25, 85, 75, Poste.CENTRE));
+                joueursObs.add(new Joueur("Tuisova", "joah", 25, 81, 75, Poste.AILIER));
                 break;
         }
-        return joueurs;
+        return joueursObs;
         
     }
     

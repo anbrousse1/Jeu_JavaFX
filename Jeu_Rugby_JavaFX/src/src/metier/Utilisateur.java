@@ -5,6 +5,9 @@
  */
 package src.metier;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
 /**
  *
  * @author anbrousse1
@@ -15,7 +18,14 @@ public class Utilisateur {
     private String login;
     private String mot_de_passe;
     private int niveau;
-    private Equipe equipe;
+    
+    private final ObjectProperty<Equipe> equipe = new SimpleObjectProperty<>();
+        public Equipe getEquipe() {return equipe.get();}
+        public void setEquipe(Equipe value) {equipe.set(value);}
+        public ObjectProperty equipeProperty() {return equipe;}
+
+    
+    
 
     public Utilisateur(String nom, String prenom, String login, String mot_de_passe) {
         this.nom = nom;
@@ -30,7 +40,7 @@ public class Utilisateur {
         this.prenom = prenom;
         this.login = login;
         this.mot_de_passe = mot_de_passe;
-        this.equipe = equipe;
+        setEquipe(equipe);
     }
     
     
@@ -41,7 +51,7 @@ public class Utilisateur {
     
     
     public void ajouterEquipe(Equipe e){
-        equipe = e;
+        setEquipe(e);
     }
     
 
@@ -82,12 +92,8 @@ public class Utilisateur {
     }
     
     
-    public void se_connecter(){
-        
-    }
+    
 
-    public Equipe getEquipe() {
-        return equipe;
-    }
+  
     
 }

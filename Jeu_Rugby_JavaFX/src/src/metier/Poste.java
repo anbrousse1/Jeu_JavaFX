@@ -5,6 +5,9 @@
  */
 package src.metier;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author anbrousse1
@@ -21,14 +24,19 @@ public enum Poste {
     AILIER ("ailier"),
     ARRIERE ("arrière");
     
-    private String name = "";
+    private final StringProperty name = new SimpleStringProperty();
+        public String getName() {return name.get();}
+        private void setName(String value) {name.set(value);}
+        public StringProperty nameProperty() {return name;}
+
+    
     
     Poste(String nom){
-        this.name = nom;
+        setName(nom);
     }
     
     public String toString(){
-        return name;
+        return getName();
     }
     
 }
