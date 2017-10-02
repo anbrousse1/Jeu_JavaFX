@@ -41,6 +41,7 @@ public class Utilisateur {
         this.login = login;
         this.mot_de_passe = mot_de_passe;
         setEquipe(equipe);
+        getEquipe().editer_equipe_random();
     }
     
     

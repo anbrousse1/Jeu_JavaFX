@@ -33,7 +33,7 @@ public class MainController {
         setAnchor(uc);        
     }
 
-    private void setAnchor(Node u){
+    public static void setAnchor(Node u){
         AnchorPane.setBottomAnchor(u, 0.0);
         AnchorPane.setTopAnchor(u, 0.0);
         AnchorPane.setLeftAnchor(u, 0.0);

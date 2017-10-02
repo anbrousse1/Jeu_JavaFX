@@ -95,7 +95,8 @@ public class Persistance_Brut implements Persistance {
     
     public List<Utilisateur> getAllUsers(){
         user.add(new Utilisateur("toto", "otot", "toto", "1234", new Equipe("ASM",getJoueur("ASM"))));
-        user.add(new Utilisateur("Chucky", "chuck", "chucky", "1234", rct));
+        joueursObs.clear();
+        user.add(new Utilisateur("Chucky", "chuck", "chucky", "1234", new Equipe("RCT",getJoueur("RCT"))));
         return user;
     }
     

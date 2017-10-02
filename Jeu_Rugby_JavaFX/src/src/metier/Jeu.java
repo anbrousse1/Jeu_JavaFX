@@ -11,7 +11,9 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import src.persistance.Persistance;
 import src.persistance.Persistance_Brut;
 
@@ -30,13 +32,22 @@ public class Jeu {
         public Utilisateur getCurrent_user() {return current_user.get();}
         public void setCurrent_user(Utilisateur value) {current_user.set(value);}
         public ObjectProperty<Utilisateur> current_userProperty() {return current_user;}
+        
+    private ObservableList<Equipe> equipesObs = FXCollections.observableArrayList();
+    private final ListProperty<Equipe> equipes = new SimpleListProperty<>(equipesObs);
+        public ObservableList getEquipes() {return equipes.get();}
+        public void setEquipes(ObservableList value) {equipes.set(value);}
+        public ListProperty equipesProperty() {return equipes;}
+        
+        
 
        
     
     
     public Jeu(Persistance_Brut stub) {
         this.stub = stub;
-        users = stub.getAllUsers();       
+        users = stub.getAllUsers(); 
+        setEquipes(stub.getAllEquipe());
     }    
    
     
@@ -44,12 +55,20 @@ public class Jeu {
         for(Utilisateur u : users){
             if(u.getLogin().equals(login) && u.getMot_de_passe().equals(mdp)){
                 setCurrent_user(u);
+                enlever_current_Equipe();
                 return true;
             }
         }
         return false;
     }
 
+    private void enlever_current_Equipe(){
+        for(Equipe e : equipes){
+            if(e.getNom().equals(getCurrent_user().getEquipe().getNom())){
+                equipes.remove(e);
+            }
+        }
+    }
    
     
     

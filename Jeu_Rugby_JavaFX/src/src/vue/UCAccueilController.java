@@ -19,8 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import src.metier.Entrainement;
-import src.metier.Joueur;
+import src.metier.*;
 
 /**
  *
@@ -39,7 +38,7 @@ public class UCAccueilController extends BorderPane{
     @FXML private Label label_niveau;
     @FXML private Label label_poste;
     @FXML private Button btn_entrainer;
-
+    @FXML private Button btn_match;
     
     MainController main;
     
@@ -111,5 +110,12 @@ public class UCAccueilController extends BorderPane{
       
     }
     
+     public void jouer_match(Event e){
+         
+        UCMatchController uc = new UCMatchController(main);
+        main.anchorpane.getChildren().clear();
+        main.anchorpane.getChildren().add(uc);
+        main.setAnchor(uc);
+     }
     
 }

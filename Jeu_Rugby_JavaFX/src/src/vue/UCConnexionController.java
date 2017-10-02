@@ -59,18 +59,13 @@ public class UCConnexionController extends BorderPane{
             UCAccueilController uc = new UCAccueilController(main);
             main.anchorpane.getChildren().clear();
             main.anchorpane.getChildren().add(uc);
-            setAnchor(uc);
+            main.setAnchor(uc);
         }
         
         
     }
 
-    private void setAnchor(Node u){
-        AnchorPane.setBottomAnchor(u, 0.0);
-        AnchorPane.setTopAnchor(u, 0.0);
-        AnchorPane.setLeftAnchor(u, 0.0);
-        AnchorPane.setRightAnchor(u, 0.0);
-    }
+  
     
 
     
