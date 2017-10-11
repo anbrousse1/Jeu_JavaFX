@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.metier;
+package src.Model;
 
+import src.ModelView.EquipeVM;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -19,9 +20,9 @@ public class Utilisateur {
     private String mot_de_passe;
     private int niveau;
     
-    private final ObjectProperty<Equipe> equipe = new SimpleObjectProperty<>();
-        public Equipe getEquipe() {return equipe.get();}
-        public void setEquipe(Equipe value) {equipe.set(value);}
+    private final ObjectProperty<EquipeVM> equipe = new SimpleObjectProperty<>();
+        public EquipeVM getEquipe() {return equipe.get();}
+        public void setEquipe(EquipeVM value) {equipe.set(value);}
         public ObjectProperty equipeProperty() {return equipe;}
 
     
@@ -35,7 +36,7 @@ public class Utilisateur {
         this.niveau = 0;
     }
 
-    public Utilisateur(String nom, String prenom, String login, String mot_de_passe, Equipe equipe) {
+    public Utilisateur(String nom, String prenom, String login, String mot_de_passe, EquipeVM equipe) {
         this.nom = nom;
         this.prenom = prenom;
         this.login = login;
@@ -51,7 +52,7 @@ public class Utilisateur {
     }
     
     
-    public void ajouterEquipe(Equipe e){
+    public void ajouterEquipe(EquipeVM e){
         setEquipe(e);
     }
     

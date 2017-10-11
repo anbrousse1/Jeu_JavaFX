@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.metier;
+package src.Model;
 
 
+import src.ModelView.EquipeVM;
+import src.ModelView.JoueurVM;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
@@ -27,7 +29,7 @@ public class FabriqueMatchSeven implements FabriqueMatch{
      * @param journee 
      * L'équipe A joue à domicile par conséquent il a plus de chance de l'emporter
      */
-    public static Match rencontre(Equipe equipeA, Equipe equipeB,int journee){        
+    public static Match rencontre(EquipeVM equipeA, EquipeVM equipeB,int journee){        
         int niveauA;
         int niveauB;
         int pointA;
@@ -61,13 +63,13 @@ public class FabriqueMatchSeven implements FabriqueMatch{
                   
     }
    
-    public static int calcul_niveau_total(Equipe equipe){
+    public static int calcul_niveau_total(EquipeVM equipe){
         int niveautotal = 0;
         
-        Set<Map.Entry<Integer, Joueur>> setEquipe = equipe.getEquipes().entrySet();
-             Iterator<Map.Entry<Integer, Joueur>> it = setEquipe.iterator();
+        Set<Map.Entry<Integer, JoueurVM>> setEquipe = equipe.getEquipes().entrySet();
+             Iterator<Map.Entry<Integer, JoueurVM>> it = setEquipe.iterator();
              while(it.hasNext()){
-                Map.Entry<Integer, Joueur> e = it.next();
+                Map.Entry<Integer, JoueurVM> e = it.next();
                 niveautotal += e.getValue().getNiveau();
              }
         return niveautotal;

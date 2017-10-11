@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.metier;
+package src.Model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

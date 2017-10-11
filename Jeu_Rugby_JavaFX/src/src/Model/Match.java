@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.metier;
+package src.Model;
+
+import src.ModelView.EquipeVM;
 
 /**
  *
@@ -11,13 +13,13 @@ package src.metier;
  */
 public class Match {
     private int journee;
-    private Equipe equipeA;
-    private Equipe equipeB;
+    private EquipeVM equipeA;
+    private EquipeVM equipeB;
     private int pointA;
     private int pointB;
     
 
-    public Match(int journee, Equipe equipeA, Equipe equipeB, int pointA, int pointB) {
+    public Match(int journee, EquipeVM equipeA, EquipeVM equipeB, int pointA, int pointB) {
         this.journee = journee;
         this.equipeA = equipeA;
         this.equipeB = equipeB;
@@ -29,11 +31,11 @@ public class Match {
         return journee;
     }
 
-    public Equipe getEquipeA() {
+    public EquipeVM getEquipeA() {
         return equipeA;
     }
 
-    public Equipe getEquipeB() {
+    public EquipeVM getEquipeB() {
         return equipeB;
     }
 

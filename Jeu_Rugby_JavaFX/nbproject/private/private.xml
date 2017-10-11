@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/etud/anbrousse1/Jeu_JavaFX/Jeu_Rugby_JavaFX/src/src/metier/Joueur.java</file>
-            <file>file:/home/etud/anbrousse1/Jeu_JavaFX/Jeu_Rugby_JavaFX/src/src/metier/Utilisateur.java</file>
-            <file>file:/home/etud/anbrousse1/Jeu_JavaFX/Jeu_Rugby_JavaFX/ressource/fxml/UCAccueil.fxml</file>
-            <file>file:/home/etud/anbrousse1/Jeu_JavaFX/Jeu_Rugby_JavaFX/src/src/metier/FabriqueMatch.java</file>
-            <file>file:/home/etud/anbrousse1/Jeu_JavaFX/Jeu_Rugby_JavaFX/ressource/fxml/UCMatch.fxml</file>
-            <file>file:/home/etud/anbrousse1/Jeu_JavaFX/Jeu_Rugby_JavaFX/src/src/metier/Jeu.java</file>
-            <file>file:/home/etud/anbrousse1/Jeu_JavaFX/Jeu_Rugby_JavaFX/src/src/metier/FabriqueMatchSeven.java</file>
-            <file>file:/home/etud/anbrousse1/Jeu_JavaFX/Jeu_Rugby_JavaFX/src/src/vue/UCAccueilController.java</file>
-            <file>file:/home/etud/anbrousse1/Jeu_JavaFX/Jeu_Rugby_JavaFX/src/src/vue/UCMatchController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

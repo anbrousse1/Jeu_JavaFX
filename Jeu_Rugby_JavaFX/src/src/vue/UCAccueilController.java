@@ -5,6 +5,8 @@
  */
 package src.vue;
 
+import src.ModelView.JoueurVM;
+import src.Model.Entrainement;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -19,7 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import src.metier.*;
 
 /**
  *
@@ -28,7 +29,8 @@ import src.metier.*;
 public class UCAccueilController extends BorderPane{
 
     @FXML public Label nomEquipe;
-    @FXML public ListView<Joueur> listjoueur;
+    @FXML public Label niveauE;
+    @FXML public ListView<JoueurVM> listjoueur;
     @FXML private Label nom;
     @FXML private Label prenom;
     @FXML private Label age;
@@ -56,7 +58,8 @@ public class UCAccueilController extends BorderPane{
     
     @FXML
     public void initialize() {
-        nomEquipe.textProperty().bind(main.jeu.getCurrent_user().getEquipe().nomProperty());        
+        nomEquipe.textProperty().bind(main.jeu.getCurrent_user().getEquipe().nomProperty());      
+        niveauE.textProperty().bindBidirectional(main.jeu.getCurrent_user().getEquipe().niveauProperty(), new DecimalFormat());
         listjoueur.itemsProperty().bind(main.jeu.getCurrent_user().getEquipe().joueursProperty());
         affichageComposant(false);   
         listjoueur.getSelectionModel().selectedItemProperty().addListener((o,old,newV)->{
@@ -71,7 +74,7 @@ public class UCAccueilController extends BorderPane{
           
     }
     
-    private void unbind(Joueur old){
+    private void unbind(JoueurVM old){
         nom.textProperty().unbindBidirectional(old.nomProperty());
         prenom.textProperty().unbindBidirectional(old.prenomProperty());
         age.textProperty().unbindBidirectional(old.ageProperty());
@@ -79,7 +82,7 @@ public class UCAccueilController extends BorderPane{
         poste.textProperty().unbindBidirectional(old.getPoste().nameProperty());
     }
     
-    private void bind(Joueur newV){
+    private void bind(JoueurVM newV){
         nom.textProperty().bindBidirectional(newV.nomProperty());
         prenom.textProperty().bindBidirectional(newV.prenomProperty());
         age.textProperty().bindBidirectional(newV.ageProperty(),new DecimalFormat());

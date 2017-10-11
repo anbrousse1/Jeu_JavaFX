@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import src.metier.Jeu;
+import src.Model.Jeu;
 import src.persistance.Persistance_Brut;
 
 /**

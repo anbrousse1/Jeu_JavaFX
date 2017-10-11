@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.metier;
+package src.Model;
 
+import src.ModelView.EquipeVM;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.ListProperty;
@@ -33,8 +34,8 @@ public class Jeu {
         public void setCurrent_user(Utilisateur value) {current_user.set(value);}
         public ObjectProperty<Utilisateur> current_userProperty() {return current_user;}
         
-    private ObservableList<Equipe> equipesObs = FXCollections.observableArrayList();
-    private final ListProperty<Equipe> equipes = new SimpleListProperty<>(equipesObs);
+    private ObservableList<EquipeVM> equipesObs = FXCollections.observableArrayList();
+    private final ListProperty<EquipeVM> equipes = new SimpleListProperty<>(equipesObs);
         public ObservableList getEquipes() {return equipes.get();}
         public void setEquipes(ObservableList value) {equipes.set(value);}
         public ListProperty equipesProperty() {return equipes;}
@@ -63,7 +64,7 @@ public class Jeu {
     }
 
     private void enlever_current_Equipe(){
-        for(Equipe e : equipes){
+        for(EquipeVM e : equipes){
             if(e.getNom().equals(getCurrent_user().getEquipe().getNom())){
                 equipes.remove(e);
             }
