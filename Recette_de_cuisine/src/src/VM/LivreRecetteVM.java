@@ -17,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import src.Model.FabriqueRecette;
 import src.Model.LivreRecette;
+import src.Model.Recette;
 
 /**
  *
@@ -47,10 +48,16 @@ public class LivreRecetteVM implements PropertyChangeListener{
             }
         });
         
-       model.addPropertyChangeListener((evt) -> {
-           
-       });
+       model.addPropertyChangeListener(this);
     }
+     @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        Recette r = (Recette) evt.getNewValue();
+        RecetteVM rvm = new RecetteVM(r.getNom());
+        rvm.setModel(r);
+        recettes.add(rvm);
+        
+    } 
     
     
     public LivreRecette getModel() {
@@ -82,15 +89,5 @@ public class LivreRecetteVM implements PropertyChangeListener{
         return model.toString();
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        
-    }
-    
-    
-    
-    
-        
-    
-    
+      
 }
