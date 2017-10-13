@@ -5,6 +5,7 @@
  */
 package src;
 
+import Persistance.Persistance;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import src.Vue.MainController;
 
 /**
  *
@@ -23,7 +25,7 @@ public class Loader extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        
+        MainController.livreRecette = Persistance.load();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Recette de cuisine");
@@ -32,6 +34,14 @@ public class Loader extends Application{
         
         
     }    
+
+    @Override
+    public void stop() throws Exception {
+        super.stop(); 
+        Persistance.save(MainController.livreRecette);
+    }
+    
+    
     
 
     

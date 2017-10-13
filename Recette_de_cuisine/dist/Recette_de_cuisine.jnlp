@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Recette_de_cuisine.jar" size="11100" download="eager" />
+    <jar href="Recette_de_cuisine.jar" size="12909" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Recette_de_cuisine" >
     <param name="requiredFXVersion" value="8.0+"/>

@@ -5,14 +5,18 @@
  */
 package src.Vue;
 
+import java.awt.Dialog;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import src.VM.LivreRecetteVM;
 import src.VM.RecetteVM;
@@ -23,20 +27,19 @@ import src.VM.RecetteVM;
  * @author anbrousse1
  */
 public class MainController {
-    LivreRecetteVM livreRecette;  
+    public static LivreRecetteVM livreRecette;  
     
     @FXML ListView<RecetteVM> liste_recette;    
     @FXML Label nomLivre;
+    @FXML Label info_label;
     @FXML TextField nom_recette;
+    @FXML TextField nouvelleRecette;
     
     @FXML
     public void initialize() {
-        livreRecette = new LivreRecetteVM("Mes recettes");
-        livreRecette.ajouterRecette("Tête de veau");
-        livreRecette.ajouterRecette("Pot au feu");
-
-
         
+        livreRecette = new LivreRecetteVM("Mes recettes");        
+       
         nomLivre.textProperty().bind(livreRecette.nomProperty());
         liste_recette.itemsProperty().bind(livreRecette.recettesProperty());
         
@@ -60,8 +63,8 @@ public class MainController {
                         textProperty().unbind();
                         setText("");
                     }else{
-                        textProperty().bind(item.nomProperty());
-
+                       item.setNom(item.getNom().toUpperCase());
+                       textProperty().bind(item.nomProperty());
                     }
                 }
             };
@@ -79,7 +82,15 @@ public class MainController {
     
     
     public void ajouter(Event e){
-        livreRecette.ajouterRecette("patate");
+        String s = nouvelleRecette.textProperty().getValue();
+        if(s.isEmpty()){
+            info_label.textProperty().setValue("Vous devez renseigner le nom de la recette");
+        }else{
+            livreRecette.ajouterRecette(s);
+        }        
+        nouvelleRecette.clear();
     }
+    
+    
 }
 

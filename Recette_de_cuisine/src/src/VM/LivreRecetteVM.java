@@ -40,15 +40,8 @@ public class LivreRecetteVM implements PropertyChangeListener{
 
     public LivreRecetteVM(String nom) {
         model = new LivreRecette(nom);
-        setNom(nom);        
-        nomProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {                
-                model.setNom(newValue);
-            }
-        });
-        
-       model.addPropertyChangeListener(this);
+        setNom(nom);  
+        model.addPropertyChangeListener(this);
     }
      @Override
     public void propertyChange(PropertyChangeEvent evt) {

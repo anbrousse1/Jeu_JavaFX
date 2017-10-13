@@ -8,6 +8,7 @@ package src.Model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -17,7 +18,7 @@ import javafx.collections.ObservableList;
  *
  * @author anbrousse1
  */
-public class LivreRecette  {
+public class LivreRecette  implements Serializable{
         
     private String nom;
     
