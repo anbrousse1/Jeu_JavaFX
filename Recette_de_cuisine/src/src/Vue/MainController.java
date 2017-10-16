@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import src.Model.LivreRecette;
 import src.VM.LivreRecetteVM;
 import src.VM.RecetteVM;
 
@@ -34,11 +35,14 @@ public class MainController {
     @FXML Label info_label;
     @FXML TextField nom_recette;
     @FXML TextField nouvelleRecette;
+
+    public MainController(LivreRecette livreRecette) {
+        this.livreRecette = new LivreRecetteVM(livreRecette);
+    }
     
     @FXML
     public void initialize() {
         
-        livreRecette = new LivreRecetteVM("Mes recettes");        
        
         nomLivre.textProperty().bind(livreRecette.nomProperty());
         liste_recette.itemsProperty().bind(livreRecette.recettesProperty());

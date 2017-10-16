@@ -5,11 +5,13 @@
  */
 package src.Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author anbrousse1
  */
-public class Recette {
+public class Recette implements Serializable {
 
     private String nom;
 

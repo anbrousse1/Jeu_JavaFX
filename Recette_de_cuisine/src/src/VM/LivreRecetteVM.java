@@ -23,36 +23,71 @@ import src.Model.Recette;
  *
  * @author anbrousse1
  */
-public class LivreRecetteVM implements PropertyChangeListener{
-    
+public class LivreRecetteVM implements PropertyChangeListener {
+
     private LivreRecette model;
-    
+
     private ObservableList<RecetteVM> recetteObs = FXCollections.observableArrayList();
     private final ListProperty<RecetteVM> recettes = new SimpleListProperty<>(recetteObs);
-        public ObservableList getRecettes() {return recettes.get();}
-        public void setRecettes(ObservableList value) {recettes.set(value);}
-        public ListProperty recettesProperty() {return recettes;}
-        
+
+    public ObservableList getRecettes() {
+        return recettes.get();
+    }
+
+    public void setRecettes(ObservableList value) {
+        recettes.set(value);
+    }
+
+    public ListProperty recettesProperty() {
+        return recettes;
+    }
+
     private final StringProperty nom = new SimpleStringProperty();
-        public String getNom() {return nom.get();}
-        public void setNom(String value) {nom.set(value);}
-        public StringProperty nomProperty() {return nom;}
+
+    public String getNom() {
+        return nom.get();
+    }
+
+    public void setNom(String value) {
+        nom.set(value);
+    }
+
+    public StringProperty nomProperty() {
+        return nom;
+    }
 
     public LivreRecetteVM(String nom) {
         model = new LivreRecette(nom);
-        setNom(nom);  
+        setNom(nom);
         model.addPropertyChangeListener(this);
     }
-     @Override
+
+    public LivreRecetteVM(LivreRecette model) {
+        if (model == null) {
+            this.model = new LivreRecette("default");
+        } else {
+            this.model = model;
+            setNom(model.getNom());
+
+            for (Recette r : model.getRecettes()) {
+                RecetteVM rVM = new RecetteVM(r);
+                this.getRecettes().add(rVM);
+            }
+        }
+
+        this.model.addPropertyChangeListener(this);
+
+    }
+
+    @Override
     public void propertyChange(PropertyChangeEvent evt) {
         Recette r = (Recette) evt.getNewValue();
-        RecetteVM rvm = new RecetteVM(r.getNom());
+        RecetteVM rvm = new RecetteVM(r);
         rvm.setModel(r);
         recettes.add(rvm);
-        
-    } 
-    
-    
+
+    }
+
     public LivreRecette getModel() {
         return model;
     }
@@ -68,13 +103,13 @@ public class LivreRecetteVM implements PropertyChangeListener{
     public void setRecetteObs(ObservableList<RecetteVM> recetteObs) {
         this.recetteObs = recetteObs;
     }
-    
-    public void ajouterRecette(String nom){
-        model.ajouterRecette(recetteObs.size(),FabriqueRecette.fabriqueRecette(nom));                
+
+    public void ajouterRecette(String nom) {
+        model.ajouterRecette(recetteObs.size(), FabriqueRecette.fabriqueRecette(nom));
     }
-    
-    public void creerRecette(String nom){
-        model.ajouterRecette(recetteObs.size(),nom);           
+
+    public void creerRecette(String nom) {
+        model.ajouterRecette(recetteObs.size(), nom);
     }
 
     @Override
@@ -82,5 +117,4 @@ public class LivreRecetteVM implements PropertyChangeListener{
         return model.toString();
     }
 
-      
 }

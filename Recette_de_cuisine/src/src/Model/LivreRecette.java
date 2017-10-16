@@ -8,6 +8,7 @@ package src.Model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,9 @@ public class LivreRecette  implements Serializable{
         setNom(nom);
     }
     
-        private List<Recette> recettes = new ArrayList<>();
+    private transient PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+
+    private List<Recette> recettes = new ArrayList<>();
 
     public static final String PROP_RECETTES = "recettes";
 
@@ -50,7 +53,6 @@ public class LivreRecette  implements Serializable{
         propertyChangeSupport.firePropertyChange(PROP_RECETTES, oldRecettes, recettes);
     }
 
-    private transient final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     /**
      * Add PropertyChangeListener.
@@ -89,6 +91,11 @@ public class LivreRecette  implements Serializable{
     public void ajouterRecette(int index,Recette r){
         propertyChangeSupport.fireIndexedPropertyChange(PROP_RECETTES, index, null, r);
         recettes.add(r);
+    }
+    
+    private Object readResolve() throws ObjectStreamException{
+        this.propertyChangeSupport = new PropertyChangeSupport(this);
+        return this;
     }
     
     

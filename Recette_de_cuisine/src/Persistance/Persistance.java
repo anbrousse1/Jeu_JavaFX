@@ -26,13 +26,13 @@ import src.VM.RecetteVM;
  */
 public class Persistance {
     
-    public static void save(LivreRecetteVM livre){
+    public static void save(LivreRecette livre){
         
         ObjectOutputStream oos = null;
         try {
             File file = new File("livre.bin");
             oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(livre.getModel());
+            oos.writeObject(livre);
         } catch (IOException ex) {
             Logger.getLogger(Persistance.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -44,19 +44,13 @@ public class Persistance {
         }
     }
     
-    public static LivreRecetteVM load(){
+    public static LivreRecette load(){
         ObjectInputStream ooi = null;
         LivreRecette livre = null;
-        LivreRecetteVM livreVM = null;
         try {
             File file = new File("livre.bin");
             ooi = new ObjectInputStream(new FileInputStream(file));
-            livre = (LivreRecette) ooi.readObject();
-            livreVM = new LivreRecetteVM(livre.getNom());
-            for(Recette r : livre.getRecettes()){
-                RecetteVM rVM = new RecetteVM(r.getNom());
-                livreVM.getRecettes().add(rVM);                
-            }
+            livre = (LivreRecette) ooi.readObject();            
         } catch (IOException ex) {
             Logger.getLogger(Persistance.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -68,6 +62,6 @@ public class Persistance {
                 Logger.getLogger(Persistance.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return livreVM;
+        return livre;
     }
 }

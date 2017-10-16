@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import src.Model.FabriqueRecette;
 import src.Model.Recette;
 
 /**
@@ -26,9 +27,14 @@ public class RecetteVM {
         }
         public StringProperty nomProperty() {return nom;}
 
-    public RecetteVM(String nom) {
-        model = new Recette(nom);
-        setNom(nom);
+    public RecetteVM(Recette model) {
+        if(model == null){
+            this.model = FabriqueRecette.fabriqueRecette("default");
+        }else{
+                    this.model = model;
+
+        }
+        setNom(this.model.getNom());
         nomProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
